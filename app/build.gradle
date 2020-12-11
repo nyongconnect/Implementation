@@ -44,7 +44,6 @@ android {
 dependencies {
     implementation project(':data')
     implementation project(':domain')
-    implementation project(':facebook')
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     def nav_version = "2.3.0"
@@ -99,7 +98,9 @@ dependencies {
 
 
     //facebook login
-    implementation 'com.facebook.android:facebook-login:[5,6)'
+
+    implementation 'com.facebook.android:facebook-android-sdk:5.0.0'
+
 
     //observe view changes
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'

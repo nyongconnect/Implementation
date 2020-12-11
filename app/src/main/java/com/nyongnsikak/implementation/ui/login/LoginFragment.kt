@@ -8,24 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.navGraphViewModels
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
-import com.nyongnsikak.implementation.R
 import com.nyongnsikak.implementation.databinding.FragmentLoginBinding
-import com.nyongnsikak.implementation.ui.login.viewmodel.ProfileViewModel
 import com.nyongnsikak.implementation.utils.Result
 import com.nyongnsikak.movieviewer.ui.zbase.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_login.view.*
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment() {
 
-   private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
     private lateinit var binding: FragmentLoginBinding
 
 
@@ -41,13 +32,13 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.signout.setOnClickListener{
-            viewModel.logout()
+        binding.signout.setOnClickListener {
+
         }
-        binding.facebookLogin.setOnClickListener{
-            viewModel.login()
+        binding.facebookLogin.setOnClickListener {
+            viewModel.login(this)
         }
-        viewModel.loginCallback()
+
 
     }
 
@@ -59,21 +50,25 @@ class LoginFragment : BaseFragment() {
 
     override fun observeData() {
         super.observeData()
-        viewModel.user.observe(viewLifecycleOwner, Observer {result ->
-            when(result){
-
-                is Result.Success->{
+        viewModel.user.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is Result.Success -> {
                     binding.name.text = result.data?.name
+                    binding.tvBirthday.text = result.data?.birthday
+                    binding.tvEmail.text = result.data?.email
 
 
                 }
             }
 
         })
-        viewModel.logout.observe(viewLifecycleOwner, Observer {
-            result-> when(result){
-            is Result.Success -> {Toast.makeText(requireContext(), "success", Toast.LENGTH_LONG).show()}
-        }
+
+        viewModel.logout.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is Result.Success -> {
+                    Toast.makeText(requireContext(), "success", Toast.LENGTH_LONG).show()
+                }
+            }
         })
     }
 

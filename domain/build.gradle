@@ -20,4 +20,5 @@ dependencies {
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit2Version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2Version"
+
 }

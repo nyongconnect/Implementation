@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Implementation">
+        android:theme="@style/Theme.Implementation.NoActionBar">
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
